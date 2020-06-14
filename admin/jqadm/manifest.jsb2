@@ -1,0 +1,22 @@
+{
+	"projectName": "custom-br-shop",
+	"licenseText": "proprietary",
+	"pkgs": [{
+		"name": "custom-br-shop CSS",
+		"file": "custom-br-shop.css",
+		"isDebug": true,
+		"fileIncludes": [{
+			"text": "custom.css",
+			"path": "themes/"
+		}]
+	}, {
+		"name": "custom-br-shop JS",
+		"file": "custom-br-shop.js",
+		"isDebug": true,
+		"fileIncludes": [{
+			"text": "custom.js",
+			"path": "themes/"
+		}]
+	}],
+	"resources" : []
+}
