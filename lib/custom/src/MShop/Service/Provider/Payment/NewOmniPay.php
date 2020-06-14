@@ -2,6 +2,7 @@
 
 namespace Aimeos\MShop\Service\Provider\Payment;
 
+use Aimeos\MShop;
 
 /**
  * Payment provider for payment gateways supported by the Omnipay library.
@@ -26,7 +27,17 @@ class NewOmniPay extends \Aimeos\MShop\Service\Provider\Payment\OmniPay
 			$langid = $this->getContext()->getLocale()->getLanguageId();
 		} else {
 			$langid = $address->getLanguageId();
-		}
+        }
+        
+        //TODO pass real items
+        $items = [
+            '0' => [
+                'name' => 'test',
+                'description' => 'test',
+                'quantity' => 1,
+                'price' => 1
+            ]
+        ];
 
 		$data = array(
 			'language' => $langid,
@@ -34,7 +45,8 @@ class NewOmniPay extends \Aimeos\MShop\Service\Provider\Payment\OmniPay
 			'amount' => $this->getAmount( $base->getPrice() ),
 			'currency' => $base->getLocale()->getCurrencyId(),
 			'description' => sprintf( $this->getContext()->getI18n()->dt( 'mshop', 'Order %1$s' ), $orderid ),
-			'clientIp' => $this->getValue( 'client.ipaddress' ),
+            'clientIp' => $this->getValue( 'client.ipaddress' ),
+            'items' => $items
 		);
 
 		if( $this->getValue( 'createtoken', false ) ) {
